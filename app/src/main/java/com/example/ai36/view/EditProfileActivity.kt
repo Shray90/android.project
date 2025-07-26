@@ -64,7 +64,7 @@ class EditProfileActivity : ComponentActivity() {
         }
     }
 }
-
+//edit profile
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditProfileScreen(
