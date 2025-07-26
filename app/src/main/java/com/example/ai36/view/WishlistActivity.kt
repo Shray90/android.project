@@ -27,7 +27,7 @@ import com.example.ai36.viewmodel.CartViewModelFactory
 import com.example.ai36.viewmodel.WishlistViewModel
 import com.example.ai36.viewmodel.WishlistViewModelFactory
 
-
+//wish list activity
 class WishlistActivity : ComponentActivity() {
     private lateinit var wishlistViewModel: WishlistViewModel
     private lateinit var cartViewModel: CartViewModel
@@ -65,8 +65,8 @@ fun WishlistScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Your Wishlist", fontSize = 20.sp) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF4CAF50))
+                title = { Text("Your Wishlist", fontSize = 20.sp, color=Color.White) },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF684C2F))
             )
         }
     ) { padding ->
