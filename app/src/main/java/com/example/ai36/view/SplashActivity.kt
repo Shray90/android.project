@@ -1,5 +1,5 @@
 package com.example.ai36.view
-
+//slash screen
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
