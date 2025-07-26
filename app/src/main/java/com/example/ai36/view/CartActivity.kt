@@ -81,9 +81,9 @@ fun CartScreen(cartViewModel: CartViewModel, orderViewModel: OrderViewModel) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Your Cart", fontSize = 20.sp) },
+                title = { Text("Your Cart", fontSize = 20.sp, color=Color.White) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF4CAF50)  // Green color
+                    containerColor = Color(0xFF684C2F)  // Green color
                 )
             )
         },
