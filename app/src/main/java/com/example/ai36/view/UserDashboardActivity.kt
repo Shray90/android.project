@@ -35,6 +35,9 @@ import com.example.ai36.repository.UserRepositoryImpl
 import com.example.ai36.repository.WishlistRepositoryImpl
 import com.example.ai36.viewmodel.*
 
+val PrimaryColor = Color(0xFF684C2F)
+val BackgroundColor = Color(0xFFF0EAE1)
+
 class UserDashboardActivity : ComponentActivity() {
     private lateinit var cartViewModel: CartViewModel
     private lateinit var wishlistViewModel: WishlistViewModel
@@ -48,7 +51,10 @@ class UserDashboardActivity : ComponentActivity() {
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepositoryImpl()))[UserViewModel::class.java]
 
         setContent {
-            MaterialTheme {
+            MaterialTheme(colorScheme = lightColorScheme(
+                primary = PrimaryColor,
+                background = BackgroundColor
+            )) {
                 UserDashboardBody(
                     cartViewModel = cartViewModel,
                     wishlistViewModel = wishlistViewModel,
@@ -81,7 +87,6 @@ fun UserDashboardBody(
     val user by userViewModel.user.observeAsState()
     var menuExpanded by remember { mutableStateOf(false) }
 
-    // Refresh user and products on load
     LaunchedEffect(userViewModel.getCurrentUser()?.uid) {
         userViewModel.getCurrentUser()?.uid?.let { userViewModel.getUserById(it) }
         productViewModel.getAllProducts()
@@ -89,11 +94,12 @@ fun UserDashboardBody(
     LaunchedEffect(searchQuery) { productViewModel.filterProducts(searchQuery) }
 
     Scaffold(
+        containerColor = BackgroundColor,
         topBar = {
             TopAppBar(
-                title = { Text("RetroCrugSports") },
+                title = { Text("Yala Carves") },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF4CAF50),
+                    containerColor = PrimaryColor,
                     titleContentColor = Color.White
                 ),
                 actions = {
@@ -134,28 +140,28 @@ fun UserDashboardBody(
             )
         },
         bottomBar = {
-            NavigationBar {
+            NavigationBar(containerColor = PrimaryColor) {
                 NavigationBarItem(
                     selected = true,
                     onClick = {},
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    label = { Text("Home") }
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
+                    label = { Text("Home", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = false,
                     onClick = {
                         context.startActivity(Intent(context, CartActivity::class.java))
                     },
-                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") },
-                    label = { Text("Cart") }
+                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart", tint = Color.White) },
+                    label = { Text("Cart", color = Color.White) }
                 )
                 NavigationBarItem(
                     selected = false,
                     onClick = {
                         context.startActivity(Intent(context, WishlistActivity::class.java))
                     },
-                    icon = { Icon(Icons.Default.FavoriteBorder, contentDescription = "Wishlist") },
-                    label = { Text("Wishlist") }
+                    icon = { Icon(Icons.Default.FavoriteBorder, contentDescription = "Wishlist", tint = Color.White) },
+                    label = { Text("Wishlist", color = Color.White) }
                 )
             }
         }
@@ -164,8 +170,8 @@ fun UserDashboardBody(
             Modifier
                 .padding(padding)
                 .fillMaxSize()
+                .background(BackgroundColor)
         ) {
-            // User profile row at top
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(12.dp)
@@ -174,7 +180,6 @@ fun UserDashboardBody(
                     .size(48.dp)
                     .background(Color.LightGray, CircleShape)
                 val imageUrl = user?.image
-                Log.d("UserImage", "Image URL: $imageUrl")
                 if (!imageUrl.isNullOrBlank()) {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
@@ -200,10 +205,11 @@ fun UserDashboardBody(
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = "Welcome, ${user?.firstName ?: "User"}!",
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    color = PrimaryColor
                 )
             }
-            // Search bar
+
             TextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
@@ -213,12 +219,12 @@ fun UserDashboardBody(
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp, vertical = 4.dp)
             )
-            // Products list
+
             when {
                 loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(color = PrimaryColor)
                 }
-                products.isEmpty() -> Text("No products found.", Modifier.padding(16.dp))
+                products.isEmpty() -> Text("No products found.", Modifier.padding(16.dp), color = PrimaryColor)
                 else -> LazyColumn(Modifier.padding(8.dp)) {
                     items(products.size) { index ->
                         val product = products[index]
@@ -226,7 +232,7 @@ fun UserDashboardBody(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFF4CAF50))
+                            colors = CardDefaults.cardColors(containerColor = PrimaryColor)
                         ) {
                             Column(Modifier.padding(16.dp)) {
                                 Text(
@@ -246,7 +252,7 @@ fun UserDashboardBody(
                                     Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
-                                    Button(onClick = {
+                                    OutlinedButton(onClick = {
                                         val cartItem = CartItemModel(
                                             id = "",
                                             productName = product?.productName ?: "",
@@ -266,7 +272,7 @@ fun UserDashboardBody(
                                         )
                                         wishlistViewModel.addToWishlist(wishlistItem)
                                         Toast.makeText(context, "Added to wishlist", Toast.LENGTH_SHORT).show()
-                                    }) { Text("❤️ Wishlist") }
+                                    }) { Text(" Wishlist") }
                                 }
                             }
                         }
