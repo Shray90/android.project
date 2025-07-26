@@ -41,7 +41,7 @@ class UpdateProductActivity : ComponentActivity() {
         }
     }
 }
-
+//Update product
 @Composable
 fun UpdateProductBody() {
     var name by remember { mutableStateOf("") }
