@@ -34,7 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.ai36.view.pages.HomeScreen
 import com.example.ai36.view.pages.ProfileScreen
 import com.example.ai36.view.pages.SearchScreen
-
+//navigation activity
 class NavigationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
