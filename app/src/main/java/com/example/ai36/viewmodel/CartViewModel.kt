@@ -27,7 +27,7 @@ class CartViewModel(private val cartRepository: CartRepository) : ViewModel() {
             }
         }
     }
-
+//
     fun addToCart(item: CartItemModel) {
         cartRepository.addToCart(item) { success, message ->
             if (!success) {

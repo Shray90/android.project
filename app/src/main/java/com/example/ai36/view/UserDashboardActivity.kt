@@ -202,6 +202,7 @@ fun UserDashboardBody(
                         tint = Color.White
                     )
                 }
+                //
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = "Welcome, ${user?.firstName ?: "User"}!",

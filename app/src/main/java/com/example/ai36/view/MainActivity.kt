@@ -1,5 +1,5 @@
 package com.example.ai36.view
-
+//
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

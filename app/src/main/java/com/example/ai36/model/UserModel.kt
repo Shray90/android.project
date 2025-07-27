@@ -9,3 +9,4 @@ data class UserModel(
     var country: String = "",
     var image: String? = null // Important for profile picture!
 )
+//

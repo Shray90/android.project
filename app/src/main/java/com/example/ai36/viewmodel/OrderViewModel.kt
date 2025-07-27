@@ -26,7 +26,7 @@ class OrderViewModel(private val orderRepository: OrderRepository) : ViewModel()
                 _error.postValue(message)
             }
         }
-    }
+    }//
 
     fun placeOrder(order: OrderModel) {
         orderRepository.placeOrder(order) { success, message ->

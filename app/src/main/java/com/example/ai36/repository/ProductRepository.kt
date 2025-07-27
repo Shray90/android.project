@@ -2,7 +2,7 @@ package com.example.ai36.repository
 import android.content.Context
 import android.net.Uri
 import com.example.ai36.model.ProductModel
-
+//
 interface ProductRepository {
     fun addProduct(model: ProductModel,
                    callback: (Boolean, String) -> Unit)

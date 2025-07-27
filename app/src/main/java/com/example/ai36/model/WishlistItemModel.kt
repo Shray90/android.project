@@ -5,3 +5,4 @@ data class WishlistItemModel(
     val productPrice: Double,
     val image: String
 )
+//

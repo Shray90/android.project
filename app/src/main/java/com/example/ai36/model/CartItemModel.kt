@@ -10,4 +10,4 @@ data class CartItemModel(
     var productPrice: Double = 0.0,
     var quantity: Int = 1,
     var image: String = ""
-)
+)//

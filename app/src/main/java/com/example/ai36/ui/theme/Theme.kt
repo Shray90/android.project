@@ -1,5 +1,5 @@
 package com.example.ai36.ui.theme
-
+//
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
