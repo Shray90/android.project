@@ -85,6 +85,7 @@ fun CartScreen(cartViewModel: CartViewModel, orderViewModel: OrderViewModel) {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF684C2F)  // Green color
                 )
+                //
             )
         },
         content = { padding ->
