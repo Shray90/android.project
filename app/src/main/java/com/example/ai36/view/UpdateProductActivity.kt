@@ -1,5 +1,5 @@
 package com.example.ai36.view
-
+//
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
